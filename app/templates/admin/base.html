@@ -1,0 +1,363 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+{% block extrastyle %}{% endblock %}
+    {% if LANGUAGE_BIDI %}<style>
+    body {
+    direction: rtl;
+}
+
+/* LOGIN */
+
+.login .form-row {
+    float: right;
+}
+
+.login .form-row label {
+    float: right;
+    padding-left: 0.5em;
+    padding-right: 0;
+    text-align: left;
+}
+
+.login .submit-row {
+    clear: both;
+    padding: 1em 9.4em 0 0;
+}
+
+/* GLOBAL */
+
+th {
+    text-align: right;
+}
+
+.module h2, .module caption {
+    text-align: right;
+}
+
+.module ul, .module ol {
+    margin-left: 0;
+    margin-right: 1.5em;
+}
+
+.viewlink, .addlink, .changelink {
+    padding-left: 0;
+    padding-right: 16px;
+    background-position: 100% 1px;
+}
+
+.deletelink {
+    padding-left: 0;
+    padding-right: 16px;
+    background-position: 100% 1px;
+}
+
+.object-tools {
+    float: left;
+}
+
+thead th:first-child,
+tfoot td:first-child {
+    border-left: none;
+}
+
+/* LAYOUT */
+
+#user-tools {
+    right: auto;
+    left: 0;
+    text-align: left;
+}
+
+div.breadcrumbs {
+    text-align: right;
+}
+
+#content-main {
+    float: right;
+}
+
+#content-related {
+    float: left;
+    margin-left: -300px;
+    margin-right: auto;
+}
+
+.colMS {
+    margin-left: 300px;
+    margin-right: 0;
+}
+
+/* SORTABLE TABLES */
+
+table thead th.sorted .sortoptions {
+   float: left;
+}
+
+thead th.sorted .text {
+    padding-right: 0;
+    padding-left: 42px;
+}
+
+/* dashboard styles */
+
+.dashboard .module table td a {
+    padding-left: .6em;
+    padding-right: 16px;
+}
+
+/* changelists styles */
+
+.change-list .filtered table {
+    border-left: none;
+    border-right: 0px none;
+}
+
+#changelist-filter {
+    left: 0;
+    border-left: none;
+    border-right: none;
+}
+
+.change-list .filtered .results, .change-list .filtered .paginator, .filtered #toolbar, .filtered div.xfull {
+    margin-right: 280px;
+}
+
+#changelist-filter li.selected {
+    border-left: none;
+    padding-left: 10px;
+    margin-left: 0;
+    border-right: 5px solid #eaeaea;
+    padding-right: 10px;
+    margin-right: -15px;
+}
+
+.filtered .actions {
+    margin-right: 280px;
+}
+
+#changelist table tbody td:first-child, #changelist table tbody th:first-child {
+    border-right: none;
+    border-left: none;
+}
+
+/* FORMS */
+
+.aligned label {
+    padding: 0 0 3px 1em;
+    float: right;
+}
+
+.submit-row {
+    text-align: left
+}
+
+.submit-row p.deletelink-box {
+    float: right;
+}
+
+.submit-row input.default {
+    margin-left: 0;
+}
+
+.vDateField, .vTimeField {
+    margin-left: 2px;
+}
+
+.aligned .form-row input {
+    margin-left: 5px;
+}
+
+form .aligned p.help, form .aligned div.help {
+    clear: right;
+}
+
+form .aligned ul {
+    margin-right: 163px;
+    margin-left: 0;
+}
+
+form ul.inline li {
+    float: right;
+    padding-right: 0;
+    padding-left: 7px;
+}
+
+input[type=submit].default, .submit-row input.default {
+    float: left;
+}
+
+fieldset .fieldBox {
+    float: right;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+.errorlist li {
+    background-position: 100% 12px;
+    padding: 0;
+}
+
+.errornote {
+    background-position: 100% 12px;
+    padding: 10px 12px;
+}
+
+/* WIDGETS */
+
+.calendarnav-pre
+
+vious {
+    top: 0;
+    left: auto;
+    right: 10px;
+}
+
+.calendarnav-next {
+    top: 0;
+    right: auto;
+    left: 10px;
+}
+
+.calendar caption, .calendarbox h2 {
+    text-align: center;
+}
+
+.selector {
+    float: right;
+}
+
+.selector .selector-filter {
+    text-align: right;
+}
+
+.inline-deletelink {
+    float: left;
+}
+
+form .form-row p.datetime {
+    overflow: hidden;
+}
+
+.related-widget-wrapper {
+    float: right;
+}
+
+/* MISC */
+
+.inline-related h2, .inline-group h2 {
+    text-align: right
+}
+
+.inline-related h3 span.delete {
+    padding-right: 20px;
+    padding-left: inherit;
+    left: 10px;
+    right: inherit;
+    float:left;
+}
+
+.inline-related h3 span.delete label {
+    margin-left: inherit;
+    margin-right: 2px;
+}
+
+/* IE7 specific bug fixes */
+
+div.colM {
+    position: relative;
+}
+
+.submit-row input {
+    float: left;
+}
+
+</style>{% endif %}
+{% block extrahead %}{% endblock %}
+{% block responsive %}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
+{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+  data-admin-utc-offset="{% now "Z" %}">
+
+<!-- Container -->
+<div id="container">
+
+    {% if not is_popup %}
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        {% block branding %}{% endblock %}
+        </div>
+        {% block usertools %}
+        {% if has_permission %}
+        <div id="user-tools">
+            {% block welcome-msg %}
+                {% trans 'Welcome,' %}
+                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+            {% endblock %}
+            {% block userlinks %}
+                {% if site_url %}
+                    <a href="{{ site_url }}">استعراض الكشوف</a> /
+                {% endif %}
+                {% if user.is_active and user.is_staff %}
+                    {% url 'django-admindocs-docroot' as docsroot %}
+                    {% if docsroot %}
+                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
+                    {% endif %}
+                {% endif %}
+                {% if user.has_usable_password %}
+                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+                {% endif %}
+                <a href="{% url 'admin:logout' %}">تسجيل الخروج</a>
+            {% endblock %}
+        </div>
+        {% endif %}
+        {% endblock %}
+        {% block nav-global %}{% endblock %}
+    </div>
+    <!-- END Header -->
+    {% block breadcrumbs %}
+    <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}>{% trans 'Home' %}</a>
+    {% if title %} &rsaquo; {{ title }}{% endif %}
+    </div>
+    {% endblock %}
+    {% endif %}
+
+    {% block messages %}
+        {% if messages %}
+        <ul class="messagelist">{% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+        {% endfor %}</ul>
+        {% endif %}
+    {% endblock messages %}
+
+    <!-- Content -->
+    <div id="content" class="{% block coltype %}colM{% endblock %}">
+        {% block pretitle %}{% endblock %}
+        {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+        {% block content %}
+        {% block object-tools %}{% endblock %}
+        {{ content }}
+        {% endblock %}
+        {% block sidebar %}{% endblock %}
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+<!-- END Container -->
+
+</body>
+</html>

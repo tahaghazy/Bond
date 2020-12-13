@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+    <img style="
+    width: 150px;
+    height: 130px;
+" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/127907647_763493457713603_2828272427311854551_n.png?_nc_cat=109&ccb=2&_nc_sid=ae9488&_nc_ohc=Bubtpb4Z65sAX9Rqi7H&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=0c1e798c71034a0bff103c7d2c444952&oe=5FE5BD25">
+<h1 id="site-name"><a href="{% url 'admin:index' %}">مدخل الموظفين</a></h1>
+
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
